@@ -6,4 +6,6 @@ For this project, I downloaded the diary entries from [woolfonline.com](http://w
 While this examination is in no way exhaustive, it serves as a starting point to analyse her process of writing. From what I have found so far, the corpus linguistics of Woolf's diary entries reveals how she thought of herself and her writing. The topic models created from the corpus is revealing of these things as well. Going forward, I would expand my corpus to include the essays, letters, and reviews that she wrote around the same time. Other diary or journal entries from a later time period could be used as a reference corpus to look at keywords.
 
 
-[antconc findings](https://paula-rodrigo.github.io/woolfdiaries.github.io/antconc) [topic models]() [voyant]()
+> [antconc findings](https://paula-rodrigo.github.io/woolfdiaries.github.io/antconc) 
+> [topic models]() 
+> [voyant]()

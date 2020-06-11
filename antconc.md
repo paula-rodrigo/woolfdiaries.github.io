@@ -6,4 +6,4 @@ lfljdgdfljfd hiiiii
 
 ahh
 
-<div><object data="she_search_results.txt"></object></div>
+<div><object data='width: 400px; height 600px;'"she_search_results.txt"></object></div>

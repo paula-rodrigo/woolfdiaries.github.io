@@ -1,1 +1,1 @@
-there my antconc data/screenshots will go
+where my antconc data/screenshots will go

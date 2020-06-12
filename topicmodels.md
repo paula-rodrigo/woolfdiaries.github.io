@@ -23,81 +23,104 @@ I found that 15 and 20 topics were too broad and cluttered to see any meaningful
 ---
 The code I used in R:
 <p><code>
-<br>install.packages('tidyverse')</br>
-<br>install.packages('tidytext')</br>
+<br>install.packages('tidyverse')
+<br>install.packages('tidytext')
+  <br>
 <br>library(tidyverse)</br>
 <br>library(tidytext)</br>
-<br>cb  <- read_csv("vw-diaries.csv")</br>
-<br>#put the data into a tibble (data structure for tidytext)</br>
-<br>#telling R what kind of data is in the 'text',</br>
-<br>#'line', and 'data' columns in our original csv.</br>
-<br>#stripping out all the digits from the text column</br>
-<br>cb_df <- tibble(id = cb$line, text = (str_remove_all(cb$text, "[0-9]")), date = cb$date, year = cb$year)</br>
-<br>#turn cb_df into tidy format</br>
+<br>
+<br>cb  <- read_csv("vw-diaries.csv")
+<br>
+<br>#put the data into a tibble (data structure for tidytext)
+<br>#telling R what kind of data is in the 'text',
+<br>#'line', and 'data' columns in our original csv.
+<br>#stripping out all the digits from the text column
+<br>cb_df <- tibble(id = cb$line, text = (str_remove_all(cb$text, "[0-9]")), date = cb$date, year = cb$year)
+<br>
+<br>#turn cb_df into tidy format
 <br>tidy_cb <- cb_df %>%
-  unnest_tokens(word, text)</br>
-<br>data(stop_words)</br>
-<br>#delete stopwords from our data</br>
+  unnest_tokens(word, text)
+  <br>
+<br>data(stop_words)
+<br>
+<br>#delete stopwords from our data
 <br>tidy_cb <- tidy_cb %>%
-  anti_join(stop_words)</br>
-<br>#transform list into matrix</br>
+  anti_join(stop_words)
+  <br>
+<br>#transform list into matrix
 <br>cb_words <- tidy_cb %>%
-  count(id, word, sort = TRUE)</br>
-<br>head(cb_words)</br>
+  count(id, word, sort = TRUE)
+<br>head(cb_words)
 <br>dtm <- cb_words %>%
-  cast_dtm(id, word, n)</br>
-<br>require(topicmodels)</br>
-<br>#number of topics</br>
-<br>K <- 8</br>
-<br>#set random number generator seed</br>
-<br>#for purposes of reproducibility</br>
-<br>set.seed(9161)</br>
-<br>#compute the LDA model, inference via 1000 iterations of Gibbs sampling</br>
-<br>topicModel <- LDA(dtm, K, method="Gibbs", control=list(iter = 500, verbose = 25))</br>
-<br>#look the results (posterior distributions)</br>
-<br>tmResult <- posterior(topicModel)</br>
-<br>#format of the resulting object</br>
-<br>attributes(tmResult)</br>
-<br>#lengthOfVocab</br>
-<br>ncol(dtm)</br>
-<br>#topics are probability distributions over the entire vocabulary</br>
-<br>beta <- tmResult$terms   # get beta from results</br>
-<br>dim(beta)</br>
-<br>#probability distribution of each document's contained topics</br>
-<br>theta <- tmResult$topics</br>
-<br>dim(theta)  </br>
-<br>top5termsPerTopic <- terms(topicModel, 5)</br>
-<br>topicNames <- apply(top5termsPerTopic, 2, paste, collapse=" ")</br>
-<br>topicNames</br>
-<br>#visualization</br>
-<br>library("reshape2")</br>
-<br>library("ggplot2")</br>
-<br>#select some documents for the purposes of sample visualizations</br>
-<br>exampleIds <- c(2, 20, 40)</br>
-<br>N <- length(exampleIds)</br>
-<br>topicProportionExamples <- theta[exampleIds,]</br>
-<br>colnames(topicProportionExamples) <- topicNames</br>
-<br>vizDataFrame <- melt(cbind(data.frame(topicProportionExamples), document = factor(1:N)), variable.name = "topic", id.vars = "document")  </br>
+  cast_dtm(id, word, n)
+  <br>
+<br>require(topicmodels)
+<br>
+<br>#number of topics
+<br>K <- 8
+<br>
+<br>#set random number generator seed
+<br>#for purposes of reproducibility
+<br>set.seed(9161)
+<br>
+<br>#compute the LDA model, inference via 1000 iterations of Gibbs sampling
+<br>topicModel <- LDA(dtm, K, method="Gibbs", control=list(iter = 500, verbose = 25))
+<br>
+<br>#look the results (posterior distributions)
+<br>tmResult <- posterior(topicModel)
+<br>
+<br>#format of the resulting object
+<br>attributes(tmResult)
+<br>
+<br>#lengthOfVocab
+<br>ncol(dtm)
+<br>
+<br>#topics are probability distributions over the entire vocabulary
+<br>beta <- tmResult$terms   # get beta from results
+<br>dim(beta)
+<br>
+<br>#probability distribution of each document's contained topics
+<br>theta <- tmResult$topics
+<br>dim(theta)  
+<br>top5termsPerTopic <- terms(topicModel, 5)
+<br>topicNames <- apply(top5termsPerTopic, 2, paste, collapse=" ")
+<br>topicNames
+<br>
+<br>#visualization
+<br>library("reshape2")
+<br>library("ggplot2")
+<br>
+<br>#select some documents for the purposes of sample visualizations
+<br>exampleIds <- c(2, 20, 40)
+<br>N <- length(exampleIds)
+<br>topicProportionExamples <- theta[exampleIds,]
+<br>colnames(topicProportionExamples) <- topicNames
+<br>vizDataFrame <- melt(cbind(data.frame(topicProportionExamples), document = factor(1:N)), variable.name = "topic", id.vars = "document")  
 <br>ggplot(data = vizDataFrame, aes(topic, value, fill = document), ylab = "proportion") +
   geom_bar(stat="identity") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +  
   coord_flip() +
-  facet_wrap(~ document, ncol = N)</br>
-<br>#topics over time</br>
-<br>#append decade information for aggregation</br>
-<br>cb$decade <- paste0(substr(cb$date, 0, 3), "0")</br>
-<br>#get mean topic proportions per year</br>
-<br>topic_proportion_per_year <- aggregate(theta, by = list(year = cb$year), mean)</br>
-<br>#set topic names to aggregated columns</br>
-<br>colnames(topic_proportion_per_year)[2:(K+1)] <- topicNames</br>
-<br>#reshape data frame, for when I get the topics over time thing sorted</br>
-<br>vizDataFrame <- melt(topic_proportion_per_year, id.vars = "year")</br>
-<br>#plot topic proportions per deacde as bar plot</br>
-<br>require(pals)</br>
+  facet_wrap(~ document, ncol = N)
+  <br>
+<br>#topics over time
+<br>#append decade information for aggregation
+<br>cb$decade <- paste0(substr(cb$date, 0, 3), "0")
+<br>
+<br>#get mean topic proportions per year
+<br>topic_proportion_per_year <- aggregate(theta, by = list(year = cb$year), mean)
+<br>
+<br>#set topic names to aggregated columns
+<br>colnames(topic_proportion_per_year)[2:(K+1)] <- topicNames
+<br>
+<br>#reshape data frame, for when I get the topics over time thing sorted
+<br>vizDataFrame <- melt(topic_proportion_per_year, id.vars = "year")
+<br>
+<br>#plot topic proportions per deacde as bar plot
+<br>require(pals)
 <br>ggplot(vizDataFrame, aes(x=year, y=value, fill=variable)) +
   geom_bar(stat = "identity") + ylab("proportion") +
   scale_fill_manual(values = paste0(alphabet(20), "FF"), name = "year") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))</br>
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
 </code></p>
   
 ---

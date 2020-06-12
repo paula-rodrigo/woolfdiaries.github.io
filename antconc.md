@@ -28,4 +28,4 @@ On the other hand, the collocate results for Vita seem to focus on the things th
 <div><object data="Vita_collocate_results.txt" width="600" height="350"></object></div>
 
 ---
-click [here]() to look at all of my findings from antconc.
+click [here]() to look at all of my saved output files from antconc.

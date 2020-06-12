@@ -8,6 +8,6 @@ While this examination is in no way exhaustive, it serves as a starting point to
 ---
 - [antconc findings](https://paula-rodrigo.github.io/woolfdiaries.github.io/antconc) 
 
-- [topic models]() 
+- [topic models](https://paula-rodrigo.github.io/woolfdiaries.github.io/topicmodels) 
 
-- [voyant]()
+- [voyant](https://paula-rodrigo.github.io/woolfdiaries.github.io/voyant)

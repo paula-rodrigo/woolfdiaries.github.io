@@ -6,7 +6,7 @@ After cleaning up my data and putting it into a csv file on Excel, I used Rstudi
 I experimented with different numbers of topics, starting from 15, then 20, then 5, then 8. I found that for the size of my corpus, 8 topics was the perfect amount to see a patern in the change of topics over time.
 ![8-topics](vw-topicsovertime-8.png)
 
-Here we can see that she writes less about the lighthouse and about Vita as time goes on but more about Leonard and home life. The topics of writing and books also gradually lessens over time. ...
+Here we can see that she writes less about the lighthouse (shown in purple) and about Vita (shown in beige) as time goes on but more about Leonard and home life (shown in purple). The topics of time and books (shown in dark green) also gradually lessens over time, possibly because she would have felt less pressure to meet deadlines once her book was published. The theme of writing and loving to write (shown in black) does not see a significant change over time, which suggests to me that writing was a fundamental part of Woolf's daily life, whether or not it was because she was working on a book. It could also suggest that she was continuously writing, and enjoyed it. 
 
 ---
 ![15-topics](vw-topics-year.png)

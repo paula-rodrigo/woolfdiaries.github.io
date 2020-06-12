@@ -22,8 +22,8 @@ I found that 15 and 20 topics were too broad and cluttered to see any meaningful
 
 ---
 The code I used in R:
-
-`install.packages('tidyverse')
+<code>
+install.packages('tidyverse')
 install.packages('tidytext')
 
 library(tidyverse)
@@ -122,11 +122,9 @@ require(pals)
 ggplot(vizDataFrame, aes(x=year, y=value, fill=variable)) +
   geom_bar(stat = "identity") + ylab("proportion") +
   scale_fill_manual(values = paste0(alphabet(20), "FF"), name = "year") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1))`
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+</code>
   
 ---
 
 click [here](https://github.com/paula-rodrigo/week-six/tree/master/vw-diaries-r) for all of the data and scripts that I used.
-
----
-# [home](https://paula-rodrigo.github.io/woolfdiaries.github.io/)

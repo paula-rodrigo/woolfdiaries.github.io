@@ -25,3 +25,6 @@ The code I used in R:
 <div><object data="vw-tm.R" width="600" height="350"></object></div>
 ---
 click [here](https://github.com/paula-rodrigo/week-six/tree/master/vw-diaries-r) for all of the data and scripts that I used.
+
+---
+# [home](https://paula-rodrigo.github.io/woolfdiaries.github.io/)

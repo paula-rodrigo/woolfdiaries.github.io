@@ -1,7 +1,7 @@
 - [home](https://paula-rodrigo.github.io/woolfdiaries.github.io/)
 ---
 
-I ran my corpus through Antconc to do analyse the language used in the corpus. 
+I ran my corpus through Antconc to do analyse the language used in the diary entries. 
 
 ---
 Searching for common words like "I" and "my" yeilded these results:

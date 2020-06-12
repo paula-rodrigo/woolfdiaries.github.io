@@ -1,4 +1,4 @@
-- [home](https://paula-rodrigo.github.io/woolfdiaries.github.io/)
+[home](https://paula-rodrigo.github.io/woolfdiaries.github.io/)
 ---
 
 I ran my corpus through Antconc to do analyse the language used in the diary entries. 

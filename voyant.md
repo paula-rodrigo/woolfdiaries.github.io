@@ -13,4 +13,4 @@ This visualization shows the trends of a term or terms. It graphs the relative f
 
 <div>"think*", "write*", "book*" links:</div>
 This is a collocates graph that shows keywords and terms that occur near each other often. The links for the word "book" suggest that Woolf wanted to write something amazing. It might also suggest that the people around her wanted *To the Lighthouse* to be the best. 
-<iframe style='width: 416px; height: 343px;' src='http://127.0.0.1:8888/tool/CollocatesGraph/?query=think*&query=write*&query=book*&mode=corpus&corpus=48039cebd0076122253ce951cbbef258'></iframe>
+<iframe style='width: 416px; height: 343px;' src='http://127.0.0.1:8888/tool/CollocatesGraph/?query=think*&query=write*&query=book*&mode=corpus&corpus=48039cebd0076122253ce951cbbef258'></iframe><br>
